@@ -231,6 +231,20 @@ describe(JekyllFeed) do
         expect(feed.title.content).to eql(site_title.encode(xml: :text))
       end
     end
+
+    context "with site.feed.title set" do
+      let(:overrides) do
+        {
+          "feed" => {
+            "title" => "My Feed Title",
+          },
+        }
+      end
+
+      it "uses site.feed.title for the title" do
+        expect(feed.title.content).to eql("My Feed Title")
+      end
+    end
   end
 
   context "smartify" do

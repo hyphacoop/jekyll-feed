@@ -9,7 +9,12 @@
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <id>{{ page.url | absolute_url | xml_escape }}</id>
 
-  {% assign title = site.title | default: site.name %}
+  {% if site.feed.title %}
+    {% assign title = site.feed.title | default: site.title %}
+  {% else %}
+    {% assign title = site.title | default: site.name %}
+  {% endif %}
+
   {% if page.collection != "posts" %}
     {% assign collection = page.collection | capitalize %}
     {% assign title = title | append: " | " | append: collection %}

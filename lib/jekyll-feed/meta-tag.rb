@@ -34,7 +34,7 @@ module JekyllFeed
     end
 
     def title
-      config["title"] || config["name"]
+      config.dig("feed", "title") || config["name"]
     end
   end
 end
